@@ -1,6 +1,6 @@
 # NOTE: This file was generated via generate.sh. Don't edit it directly
 
-FROM sunasteriskrnd/php:8.1.5-nginx-buster
+FROM sunasteriskrnd/php:8.0.18-nginx-bullseye
 
 ENV COMPOSER_VERSION=2.3.5
 

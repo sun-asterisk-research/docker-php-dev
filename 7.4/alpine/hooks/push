@@ -1,8 +1,0 @@
-#!/bin/bash
-
-set -e
-
-for tag in latest alpine 7.4 7.4-alpine; do
-    docker tag $IMAGE_NAME "$DOCKER_REPO:$tag"
-    docker push "$DOCKER_REPO:$tag"
-done

@@ -1,0 +1,11 @@
+variable "REGISTRY" {
+    default = "docker.io"
+}
+
+variable "REPO" {
+    default = "sunasteriskrnd/php-dev"
+}
+
+group "default" {
+    targets = {{ targets }}
+}

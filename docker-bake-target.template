@@ -1,0 +1,12 @@
+
+target "{{ php_version }}-{{ distro_release }}" {
+    context = "./{{ php_minor }}/{{ distro_release }}"
+    cache-from = [
+        "${REGISTRY}/${REPO}:{{ php_minor }}-{{ distro_release }}"
+    ]
+    tags = {{ tags }}
+}
+
+target "{{ php_minor }}-{{ distro_release }}" {
+    inherits = ["{{ php_version }}-{{ distro_release }}"]
+}
