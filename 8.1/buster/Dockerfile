@@ -1,8 +1,8 @@
 # NOTE: This file was generated via generate.sh. Don't edit it directly
 
-FROM sunasteriskrnd/php:8.1.5-nginx-buster
+FROM sunasteriskrnd/php:8.1.9-nginx-buster
 
-ENV COMPOSER_VERSION=2.3.5
+ENV COMPOSER_VERSION=2.4.0
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version="$COMPOSER_VERSION"
 

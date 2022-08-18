@@ -1,8 +1,8 @@
 # NOTE: This file was generated via generate.sh. Don't edit it directly
 
-FROM sunasteriskrnd/php:8.0.18-nginx-alpine3.15
+FROM sunasteriskrnd/php:8.0.22-nginx-alpine3.15
 
-ENV COMPOSER_VERSION=2.3.5
+ENV COMPOSER_VERSION=2.4.0
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version="$COMPOSER_VERSION"
 
