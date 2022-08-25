@@ -1,5 +1,5 @@
 
-target "{{ php_version }}-{{ distro_release }}" {
+target "{{ bake_target }}" {
     context = "./{{ php_minor }}/{{ distro_release }}"
     cache-from = [
         "${REGISTRY}/${REPO}:{{ php_minor }}-{{ distro_release }}"
@@ -7,6 +7,6 @@ target "{{ php_version }}-{{ distro_release }}" {
     tags = {{ tags }}
 }
 
-target "{{ php_minor }}-{{ distro_release }}" {
-    inherits = ["{{ php_version }}-{{ distro_release }}"]
+target "{{ bake_target_minor_version }}" {
+    inherits = ["{{ bake_target }}"]
 }

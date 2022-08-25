@@ -4,12 +4,16 @@ contains() {
     echo "${@:2}" | grep -wq $1
 }
 
+get_version() {
+    echo "$1" | awk -F '[\._]' '{print $1"."$2"."$3}'
+}
+
 get_major() {
-    echo "$1" | awk -F '.' '{print $1;}'
+    echo "$1" | awk -F '[\._]' '{print $1}'
 }
 
 get_minor() {
-    echo "$1" | awk -F '.' '{print $1"."$2;}'
+    echo "$1" | awk -F '[\._]' '{print $1"."$2}'
 }
 
 indent() {

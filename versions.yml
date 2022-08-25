@@ -19,3 +19,8 @@ default_php_8_version: 8.1
 default_distro: debian
 default_alpine_release: alpine3.16
 default_debian_release: bullseye
+
+platforms:
+- linux/amd64
+- linux/arm
+- linux/arm64
