@@ -2,7 +2,7 @@
 
 FROM sunasteriskrnd/php:7.4.30-nginx-alpine3.16
 
-ENV COMPOSER_VERSION=2.4.0
+ENV COMPOSER_VERSION=2.4.1
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version="$COMPOSER_VERSION"
 
