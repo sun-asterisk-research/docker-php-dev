@@ -37,13 +37,14 @@ generate_dockerfile() {
 
     write_warn_edit $dockerfile
 
-    tpl "Dockerfile.template" \
-        version=php_version \
-        composer_version \
-        distro_release \
-        >> $dockerfile
-
-    cat "Dockerfile-$distro.template" >> $dockerfile
+    for tpl in $(ls Dockerfile*.template | grep -E "Dockerfile-[0-9]+(|-${variant})(-${distro})?.template"); do
+        # Base Dockerfile
+        tpl "$tpl" \
+            version=php_version \
+            composer_version \
+            distro_release \
+            >> $dockerfile
+    done
 
     cp docker-php-ext-disable "$dir"
 }

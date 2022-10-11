@@ -5,24 +5,23 @@ contains() {
 }
 
 get_version() {
-    echo "$1" | awk -F '[\._]' '{print $1"."$2"."$3}'
+    echo "$1" | awk -F '[._]' '{print $1"."$2"."$3}'
 }
 
 get_major() {
-    echo "$1" | awk -F '[\._]' '{print $1}'
+    echo "$1" | awk -F '[._]' '{print $1}'
 }
 
 get_minor() {
-    echo "$1" | awk -F '[\._]' '{print $1"."$2}'
+    echo "$1" | awk -F '[._]' '{print $1"."$2}'
 }
 
 indent() {
-    level="$1"
-    per_level="$2"
+    local level="$1"
+    local per_level="$2"
 
-    nspaces=$((level * per_level))
-
-    spaces="$(printf %${nspaces}s)"
+    local nspaces=$((level * per_level))
+    local spaces="$(printf %${nspaces}s)"
 
     sed -E "s/^/$spaces/g"
 }
@@ -57,7 +56,7 @@ tpl() {
 }
 
 format_list() {
-    indent=${1:-4}
+    local indent=${1:-4}
 
     echo "["
     trim | sed -E 's/[[:space:]]+/\n/g' | sed -E 's/^(.*)$/\\"\1\\",/' | indent 1 "$indent"
