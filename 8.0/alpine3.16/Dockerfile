@@ -6,7 +6,7 @@ ENV COMPOSER_VERSION=2.4.1
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer --version="$COMPOSER_VERSION"
 
-COPY docker-php-ext-disable /usr/local/bin
+COPY rootfs /
 RUN apk add --no-cache git
 
 RUN apk add --no-cache --virtual .ext-deps autoconf gcc musl-dev make \
