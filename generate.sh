@@ -131,9 +131,6 @@ generate_bake_file_target() {
 
     eval $(meta_from_full_tag $1)
 
-    [ "$php_minor" = "$default_php_minor" ] && local is_default_version=true
-    [ "$distro_release" = "$default_distro_release" ] && local is_default_distro_release=true
-
     local version_tags="$php_minor,$php_version"
 
     if eval [ "$php_minor" = \$"default_php_${php_major}_version" ]; then
@@ -181,11 +178,10 @@ generate_bake_file() {
 
     echo "generating $bake_file ..."
 
-    write_warn_edit $bake_file
-
-    local targets=$(echo "$@" | format_bake_target | format_list | indent 1 4 | trim)
-
-    tpl docker-bake.template targets >> $bake_file
+    if [ "$APPEND" != "true" ]; then
+        write_warn_edit $bake_file
+        cat docker-bake.template >> $bake_file
+    fi
 
     for target in $@; do
         generate_bake_file_target $target >> $bake_file
