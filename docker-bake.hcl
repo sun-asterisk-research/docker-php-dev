@@ -281,3 +281,73 @@ target "7_3_33-alpine3_14" {
 target "7_3-alpine3_14" {
     inherits = ["7_3_33-alpine3_14"]
 }
+
+target "8_2_1-bullseye" {
+    context = "./8.2/bullseye"
+    cache-from = [
+        "${REGISTRY}/${REPO}:8.2-bullseye"
+    ]
+    tags = [
+        "${REGISTRY}/${REPO}:8-bullseye",
+        "${REGISTRY}/${REPO}:8",
+        "${REGISTRY}/${REPO}:8.2-bullseye",
+        "${REGISTRY}/${REPO}:8.2",
+        "${REGISTRY}/${REPO}:8.2.1-bullseye",
+        "${REGISTRY}/${REPO}:8.2.1",
+    ]
+}
+
+target "8_2-bullseye" {
+    inherits = ["8_2_1-bullseye"]
+}
+
+target "8_2_1-buster" {
+    context = "./8.2/buster"
+    cache-from = [
+        "${REGISTRY}/${REPO}:8.2-buster"
+    ]
+    tags = [
+        "${REGISTRY}/${REPO}:8-buster",
+        "${REGISTRY}/${REPO}:8.2-buster",
+        "${REGISTRY}/${REPO}:8.2.1-buster",
+    ]
+}
+
+target "8_2-buster" {
+    inherits = ["8_2_1-buster"]
+}
+
+target "8_2_1-alpine3_16" {
+    context = "./8.2/alpine3.16"
+    cache-from = [
+        "${REGISTRY}/${REPO}:8.2-alpine3.16"
+    ]
+    tags = [
+        "${REGISTRY}/${REPO}:8-alpine3.16",
+        "${REGISTRY}/${REPO}:8-alpine",
+        "${REGISTRY}/${REPO}:8.2-alpine3.16",
+        "${REGISTRY}/${REPO}:8.2-alpine",
+        "${REGISTRY}/${REPO}:8.2.1-alpine3.16",
+        "${REGISTRY}/${REPO}:8.2.1-alpine",
+    ]
+}
+
+target "8_2-alpine3_16" {
+    inherits = ["8_2_1-alpine3_16"]
+}
+
+target "8_2_1-alpine3_17" {
+    context = "./8.2/alpine3.17"
+    cache-from = [
+        "${REGISTRY}/${REPO}:8.2-alpine3.17"
+    ]
+    tags = [
+        "${REGISTRY}/${REPO}:8-alpine3.17",
+        "${REGISTRY}/${REPO}:8.2-alpine3.17",
+        "${REGISTRY}/${REPO}:8.2.1-alpine3.17",
+    ]
+}
+
+target "8_2-alpine3_17" {
+    inherits = ["8_2_1-alpine3_17"]
+}
