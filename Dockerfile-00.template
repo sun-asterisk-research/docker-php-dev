@@ -1,4 +1,4 @@
-FROM sunasteriskrnd/php:{{ version }}-nginx-{{ distro_release }}
+FROM {{ base_image }}:{{ version }}-nginx-{{ distro_release }}{{ base_image_digest }}
 
 ENV COMPOSER_VERSION={{ composer_version }}
 
