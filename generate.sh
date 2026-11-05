@@ -42,6 +42,32 @@ digest_suffix() {
     echo "@sha256:$value"
 }
 
+# Print the PECL packages to install: the pecl_packages list from versions*.yml, or "xdebug pcov".
+# Each item is a PECL package name with an optional -<version>, e.g. xdebug-3.1.6.
+# With --names, print the package names only (version stripped), for docker-php-ext-enable.
+#
+# Usage: pecl_install_list [--names]
+#
+pecl_install_list() {
+    local items
+    read -ra items <<< "${pecl_packages:-xdebug pcov}"
+
+    local item out=()
+    for item in "${items[@]}"; do
+        if ! [[ "$item" =~ ^[a-z][a-z0-9_]*(-[0-9][0-9A-Za-z.]*)?$ ]]; then
+            echo "pecl_packages item must look like xdebug or xdebug-3.1.6, got '$item'" >&2
+            return 1
+        fi
+        if [ "$1" = --names ]; then
+            out+=("${item%%-*}")
+        else
+            out+=("$item")
+        fi
+    done
+
+    echo "${out[*]}"
+}
+
 # Validate the keys of the loaded versions*.yml before anything is written or removed.
 # base_image is required; base_image_sha256 is required when exact_tags_only is true,
 # so an exact (immutable) tag is never built from an unpinned base.
@@ -58,6 +84,7 @@ validate_config() {
     exact_only=$(bool_key exact_tags_only false) || return 1
     bool_key dockerhub_push true > /dev/null || return 1
     digest_suffix base_image_sha256 > /dev/null || return 1
+    pecl_install_list > /dev/null || return 1
 
     if [ "$exact_only" = true ] && [ -z "$base_image_sha256" ]; then
         echo "$1: base_image_sha256 is required when exact_tags_only is true" >&2
@@ -106,6 +133,11 @@ generate_dockerfile() {
     local base_image_digest
     base_image_digest=$(digest_suffix base_image_sha256)
 
+    # PECL packages (optional list key pecl_packages, e.g. xdebug-3.1.6 to pin for an old PHP)
+    local pecl_install pecl_enable
+    pecl_install=$(pecl_install_list)
+    pecl_enable=$(pecl_install_list --names)
+
     mkdir -p "$dir"
 
     write_warn_edit $dockerfile
@@ -117,6 +149,8 @@ generate_dockerfile() {
             distro_release \
             base_image \
             base_image_digest \
+            pecl_install \
+            pecl_enable \
             >> $dockerfile
     done
 

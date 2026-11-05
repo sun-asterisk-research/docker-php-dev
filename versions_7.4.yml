@@ -1,0 +1,23 @@
+php_versions:
+- 7.4.33
+
+composer_version: 2.4.1
+base_image: ghcr.io/sun-asterisk-research/php
+base_image_sha256: ccd57c94a1ec0734f926ce55550c528cfabaa4f467a629e77974e61673d32061
+
+pecl_packages:
+- xdebug-3.1.6
+- pcov-1.0.12
+
+default_php_7_version: 7.4
+default_distro: alpine
+default_alpine_release: alpine3.16
+
+alpine_releases:
+- alpine3.16
+
+platforms:
+- linux/amd64
+
+exact_tags_only: true
+dockerhub_push: false
