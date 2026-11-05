@@ -2,5 +2,5 @@ RUN apt-get update \
     && apt-get install -y git vim \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pecl install xdebug pcov \
-    && docker-php-ext-enable xdebug pcov
+RUN pecl install {{ pecl_install }} \
+    && docker-php-ext-enable {{ pecl_enable }}

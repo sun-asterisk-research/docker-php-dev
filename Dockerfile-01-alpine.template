@@ -1,6 +1,6 @@
 RUN apk add --no-cache git
 
 RUN apk add --update linux-headers --no-cache --virtual .ext-deps autoconf gcc musl-dev make \
-    && pecl install xdebug pcov \
-    && docker-php-ext-enable xdebug pcov \
+    && pecl install {{ pecl_install }} \
+    && docker-php-ext-enable {{ pecl_enable }} \
     && apk del .ext-deps
