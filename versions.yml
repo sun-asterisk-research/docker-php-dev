@@ -1,5 +1,4 @@
 php_versions:
-- 7.4.30
 - 8.0.22
 
 composer_version: 2.4.1

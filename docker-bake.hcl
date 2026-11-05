@@ -8,76 +8,6 @@ variable "REPO" {
     default = "sunasteriskrnd/php-dev"
 }
 
-target "7_4_30-bullseye" {
-    context = "./7.4/bullseye"
-    cache-from = [
-        "${REGISTRY}/${REPO}:7.4-bullseye"
-    ]
-    tags = [
-        "${REGISTRY}/${REPO}:7-bullseye",
-        "${REGISTRY}/${REPO}:7",
-        "${REGISTRY}/${REPO}:7.4-bullseye",
-        "${REGISTRY}/${REPO}:7.4",
-        "${REGISTRY}/${REPO}:7.4.30-bullseye",
-        "${REGISTRY}/${REPO}:7.4.30",
-    ]
-}
-
-target "7_4-bullseye" {
-    inherits = ["7_4_30-bullseye"]
-}
-
-target "7_4_30-buster" {
-    context = "./7.4/buster"
-    cache-from = [
-        "${REGISTRY}/${REPO}:7.4-buster"
-    ]
-    tags = [
-        "${REGISTRY}/${REPO}:7-buster",
-        "${REGISTRY}/${REPO}:7.4-buster",
-        "${REGISTRY}/${REPO}:7.4.30-buster",
-    ]
-}
-
-target "7_4-buster" {
-    inherits = ["7_4_30-buster"]
-}
-
-target "7_4_30-alpine3_16" {
-    context = "./7.4/alpine3.16"
-    cache-from = [
-        "${REGISTRY}/${REPO}:7.4-alpine3.16"
-    ]
-    tags = [
-        "${REGISTRY}/${REPO}:7-alpine3.16",
-        "${REGISTRY}/${REPO}:7-alpine",
-        "${REGISTRY}/${REPO}:7.4-alpine3.16",
-        "${REGISTRY}/${REPO}:7.4-alpine",
-        "${REGISTRY}/${REPO}:7.4.30-alpine3.16",
-        "${REGISTRY}/${REPO}:7.4.30-alpine",
-    ]
-}
-
-target "7_4-alpine3_16" {
-    inherits = ["7_4_30-alpine3_16"]
-}
-
-target "7_4_30-alpine3_15" {
-    context = "./7.4/alpine3.15"
-    cache-from = [
-        "${REGISTRY}/${REPO}:7.4-alpine3.15"
-    ]
-    tags = [
-        "${REGISTRY}/${REPO}:7-alpine3.15",
-        "${REGISTRY}/${REPO}:7.4-alpine3.15",
-        "${REGISTRY}/${REPO}:7.4.30-alpine3.15",
-    ]
-}
-
-target "7_4-alpine3_15" {
-    inherits = ["7_4_30-alpine3_15"]
-}
-
 target "8_0_22-bullseye" {
     context = "./8.0/bullseye"
     cache-from = [
@@ -204,6 +134,20 @@ target "7_3_33-alpine3_14" {
 
 target "7_3-alpine3_14" {
     inherits = ["7_3_33-alpine3_14"]
+}
+
+target "7_4_33-alpine3_16" {
+    context = "./7.4/alpine3.16"
+    cache-from = [
+        "${REGISTRY}/${REPO}:7.4-alpine3.16"
+    ]
+    tags = [
+        "${REGISTRY}/${REPO}:7.4.33-alpine3.16",
+    ]
+}
+
+target "7_4-alpine3_16" {
+    inherits = ["7_4_33-alpine3_16"]
 }
 
 target "8_1_34-alpine3_22" {
